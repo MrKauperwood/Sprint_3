@@ -8,7 +8,7 @@ public class ListOfOrders {
 
     private Integer courierId;
     private String nearestStation;
-    private Integer limit = 2;
+    private Integer limit = 30;
     private Integer page = 0;
 
     public ListOfOrders() {
