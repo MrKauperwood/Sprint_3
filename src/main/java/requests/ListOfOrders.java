@@ -5,7 +5,6 @@ package requests;
  * Date: 17.04.2022
  */
 public class ListOfOrders {
-
     private Integer courierId;
     private String nearestStation;
     private Integer limit = 30;

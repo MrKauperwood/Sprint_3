@@ -5,7 +5,6 @@ package responses;
  * Date: 17.04.2022
  */
 public class PageInfo {
-
     private Integer page;
     private Integer total;
     private Integer limit;

@@ -44,75 +44,46 @@ public class LoginCourierTest {
     }
 
     @Test
-    @DisplayName("Check SC is equal 400 for request without login")
-    public void checkStatusCode400ForRequestWithoutLogin() {
+    @DisplayName("Check request without login")
+    public void checkRequestWithoutLogin() {
         ArrayList<String> userData = registerNewCourierAndReturnLoginPassword();
         LoginCourier dataForLogin = new LoginCourier(null, userData.get(1));
         Response response = loginCourierSC(dataForLogin);
+        LoginCourierResponse parsedResponse = response.as(LoginCourierResponse.class);
         Assert.assertEquals(400, response.getStatusCode());
+        Assert.assertEquals(ERROR_MESSAGE_FOR_LOGIN_WITH_EMPTY_LOGIN_OR_PASSWORD, parsedResponse.getMessage());
     }
 
     @Test
-    @DisplayName("Check error message for request without login")
-    public void checkErrorMessageForRequestWithoutLogin() {
-        ArrayList<String> userData = registerNewCourierAndReturnLoginPassword();
-        LoginCourier dataForLogin = new LoginCourier(null, userData.get(1));
-        LoginCourierResponse response = loginCourier(dataForLogin);
-        Assert.assertEquals(ERROR_MESSAGE_FOR_LOGIN_WITH_EMPTY_LOGIN_OR_PASSWORD, response.getMessage());
-    }
-
-    @Test
-    @DisplayName("Check SC is equal 400 for request without password")
-    public void checkStatusCode400ForWithoutPassword() {
+    @DisplayName("Check request without password")
+    public void checkRequestWithoutPassword() {
         ArrayList<String> userData = registerNewCourierAndReturnLoginPassword();
         LoginCourier dataForLogin = new LoginCourier(userData.get(1), null);
         Response response = loginCourierSC(dataForLogin);
+        LoginCourierResponse parsedResponse = response.as(LoginCourierResponse.class);
         Assert.assertEquals(400, response.getStatusCode());
+        Assert.assertEquals(ERROR_MESSAGE_FOR_LOGIN_WITH_EMPTY_LOGIN_OR_PASSWORD, parsedResponse.getMessage());
     }
 
     @Test
-    @DisplayName("Check error message for request without password")
-    public void checkErrorMessageForRequestWithoutPassword() {
-        ArrayList<String> userData = registerNewCourierAndReturnLoginPassword();
-        LoginCourier dataForLogin = new LoginCourier(userData.get(0), null);
-        LoginCourierResponse response = loginCourier(dataForLogin);
-        Assert.assertEquals(ERROR_MESSAGE_FOR_LOGIN_WITH_EMPTY_LOGIN_OR_PASSWORD, response.getMessage());
-    }
-
-    @Test
-    @DisplayName("Check SC is equal 404 for request with incorrect password")
-    public void checkStatusCode404ForRequestWithIncorrectPassword() {
+    @DisplayName("Check request with incorrect password")
+    public void checkRequestWithIncorrectPassword() {
         ArrayList<String> userData = registerNewCourierAndReturnLoginPassword();
         LoginCourier dataForLogin = new LoginCourier(userData.get(0), "123");
         Response response = loginCourierSC(dataForLogin);
+        LoginCourierResponse parsedResponse = response.as(LoginCourierResponse.class);
         Assert.assertEquals(404, response.getStatusCode());
+        Assert.assertEquals(ERROR_MESSAGE_FOR_LOGIN_WITH_INCORRECT_DATA, parsedResponse.getMessage());
     }
 
     @Test
-    @DisplayName("Check error message for request with incorrect password")
-    public void checkErrorMessageForRequestWithIncorrectPassword() {
-        ArrayList<String> userData = registerNewCourierAndReturnLoginPassword();
-        LoginCourier dataForLogin = new LoginCourier(userData.get(0), "123");
-        LoginCourierResponse response = loginCourier(dataForLogin);
-        Assert.assertEquals(ERROR_MESSAGE_FOR_LOGIN_WITH_INCORRECT_DATA, response.getMessage());
-    }
-
-    @Test
-    @DisplayName("Check SC is equal 404 for request with incorrect login")
-    public void checkStatusCode404ForRequestWithIncorrectLogin() {
+    @DisplayName("Check request with incorrect login")
+    public void checkRequestWithIncorrectLogin() {
         ArrayList<String> userData = registerNewCourierAndReturnLoginPassword();
         LoginCourier dataForLogin = new LoginCourier("123", userData.get(1));
         Response response = loginCourierSC(dataForLogin);
+        LoginCourierResponse parsedResponse = response.as(LoginCourierResponse.class);
         Assert.assertEquals(404, response.getStatusCode());
+        Assert.assertEquals(ERROR_MESSAGE_FOR_LOGIN_WITH_INCORRECT_DATA, parsedResponse.getMessage());
     }
-
-    @Test
-    @DisplayName("Check error message for request with incorrect login")
-    public void checkErrorMessageForRequestWithIncorrectLogin() {
-        ArrayList<String> userData = registerNewCourierAndReturnLoginPassword();
-        LoginCourier dataForLogin = new LoginCourier("123", userData.get(1));
-        LoginCourierResponse response = loginCourier(dataForLogin);
-        Assert.assertEquals(ERROR_MESSAGE_FOR_LOGIN_WITH_INCORRECT_DATA, response.getMessage());
-    }
-
 }

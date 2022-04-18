@@ -5,7 +5,6 @@ package responses;
  * Date: 15.04.2022
  */
 public class NewCourierResponse {
-
     private Boolean ok;
     private String message;
 

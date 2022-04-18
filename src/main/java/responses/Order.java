@@ -7,7 +7,6 @@ import java.util.List;
  * Date: 17.04.2022
  */
 public class Order {
-
     private Integer id;
     private String courierId;
     private String firstName;
@@ -43,7 +42,6 @@ public class Order {
     }
 
     private Integer status;
-
 
     public Order() {
     }

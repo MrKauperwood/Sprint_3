@@ -7,7 +7,6 @@ import java.util.List;
  * Date: 17.04.2022
  */
 public class ListOfOrdersResponse {
-
     private List<Order> orders;
     private PageInfo pageInfo;
     private List<AvailableStations> availableStations;

@@ -23,8 +23,7 @@ import static reststeps.SendRequest.orderCreationSC;
 @RunWith(Parameterized.class)
 public class OrderCreationParametrizedTest {
 
-    private List<String> color ;
-
+    private List<String> color;
     private String metroStation = "Комсомольская";
     private String phone = "7921740833";
     private Integer rentTime = 5;
@@ -36,7 +35,7 @@ public class OrderCreationParametrizedTest {
         this.color = color;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Test data: {0}")
     public static List<List<String>> getColors() {
         return List.of(
                 List.of("BLACK"),

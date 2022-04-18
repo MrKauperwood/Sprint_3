@@ -46,59 +46,37 @@ public class CourierCreationTest {
     }
 
     @Test
-    @DisplayName("Check SC is equal 409 after attempt to create two identical couriers")
-    public void checkStatusCode409AfterAttemptToCreateTwoIdenticalCouriers() {
+    @DisplayName("Check request with attempt to create two identical couriers")
+    public void checkRequestWithAttemptToCreateTwoIdenticalCouriers() {
         ArrayList<String> userData = generateDataForNewCourier();
         NewCourier newCourier = new NewCourier(userData.get(0), userData.get(1), userData.get(2));
         createNewCourierSC(newCourier);
         Response response = createNewCourierSC(newCourier);
+        NewCourierResponse parsedResponse = response.as(NewCourierResponse.class);
         Assert.assertEquals(409, response.getStatusCode());
+        Assert.assertEquals(ERROR_MESSAGE_FOR_IDENTICAL_COURIERS, parsedResponse.getMessage());
     }
 
     @Test
-    @DisplayName("Check body in response for attempt to create two identical couriers")
-    public void checkBodyInResponseForAttemptToCreateTwoIdenticalCouriers() {
-        ArrayList<String> userData = generateDataForNewCourier();
-        NewCourier newCourier = new NewCourier(userData.get(0), userData.get(1), userData.get(2));
-        createNewCourierSC(newCourier);
-        NewCourierResponse response = createNewCourier(newCourier);
-        Assert.assertEquals(ERROR_MESSAGE_FOR_IDENTICAL_COURIERS, response.getMessage());
-    }
-
-    @Test
-    @DisplayName("Check SC is equal 400 for attempt to create courier without login field")
-    public void checkStatusCode400ForAttemptToCreateCourierWithoutLoginField() {
+    @DisplayName("Check request with attempt to create courier without login field")
+    public void checkRequestWithAttemptToCreateCourierWithoutLoginField() {
         ArrayList<String> userData = generateDataForNewCourier();
         NewCourier newCourier = new NewCourier(null, userData.get(1), userData.get(2));
         Response response = createNewCourierSC(newCourier);
+        NewCourierResponse parsedResponse = response.as(NewCourierResponse.class);
         Assert.assertEquals(400, response.getStatusCode());
+        Assert.assertEquals(ERROR_MESSAGE_FOR_CREATION_USER_WITH_EMPTY_LOGIN_OR_PASSWORD, parsedResponse.getMessage());
     }
 
     @Test
-    @DisplayName("Check error message for attempt to create courier without login field")
-    public void checkErrorMessageForAttemptToCreateCourierWithoutLoginField() {
-        ArrayList<String> userData = generateDataForNewCourier();
-        NewCourier newCourier = new NewCourier(null, userData.get(1), userData.get(2));
-        NewCourierResponse response = createNewCourier(newCourier);
-        Assert.assertEquals(ERROR_MESSAGE_FOR_CREATION_USER_WITH_EMPTY_LOGIN_OR_PASSWORD, response.getMessage());
-    }
-
-    @Test
-    @DisplayName("Check SC is equal 400 for attempt to create courier without password field")
-    public void checkStatusCode400ForAttemptToCreateCourierWithoutPasswordField() {
+    @DisplayName("Check request with attempt to create courier without password field")
+    public void checkRequestWithAttemptToCreateCourierWithoutPasswordField() {
         ArrayList<String> userData = generateDataForNewCourier();
         NewCourier newCourier = new NewCourier(userData.get(0), null, userData.get(2));
         Response response = createNewCourierSC(newCourier);
+        NewCourierResponse parsedResponse = response.as(NewCourierResponse.class);
         Assert.assertEquals(400, response.getStatusCode());
-    }
-
-    @Test
-    @DisplayName("Check error message for attempt to create courier without password field")
-    public void checkErrorMessageForAttemptToCreateCourierWithoutPasswordField() {
-        ArrayList<String> userData = generateDataForNewCourier();
-        NewCourier newCourier = new NewCourier(userData.get(0), null, userData.get(2));
-        NewCourierResponse response = createNewCourier(newCourier);
-        Assert.assertEquals(ERROR_MESSAGE_FOR_CREATION_USER_WITH_EMPTY_LOGIN_OR_PASSWORD, response.getMessage());
+        Assert.assertEquals(ERROR_MESSAGE_FOR_CREATION_USER_WITH_EMPTY_LOGIN_OR_PASSWORD, parsedResponse.getMessage());
     }
 
     @Test

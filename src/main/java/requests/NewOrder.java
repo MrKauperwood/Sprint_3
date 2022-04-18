@@ -7,7 +7,6 @@ import java.util.List;
  * Date: 15.04.2022
  */
 public class NewOrder {
-
     private String firstName;
     private String lastName;
     private String address;

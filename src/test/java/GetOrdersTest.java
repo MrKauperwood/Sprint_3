@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import requests.ListOfOrders;
 import responses.ListOfOrdersResponse;
+
 import static reststeps.CreateNewOrder.createNewOrderAndGetId;
 import static reststeps.SendRequest.*;
 
@@ -34,7 +35,7 @@ public class GetOrdersTest {
     public void checkSuccessfulGetOrderRequestReturnsOrders() {
         ListOfOrders listOfOrders = new ListOfOrders();
         ListOfOrdersResponse response = getOrders(listOfOrders);
-        Assert.assertTrue(response.getOrders().size()>=1);
+        Assert.assertTrue(response.getOrders().size() >= 1);
         Assert.assertNotNull(response.getOrders());
     }
 }

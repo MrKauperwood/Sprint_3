@@ -5,7 +5,6 @@ package responses;
  * Date: 15.04.2022
  */
 public class NewOrderResponse {
-
     private Integer track;
     private String message;
 

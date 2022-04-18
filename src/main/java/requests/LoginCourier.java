@@ -5,7 +5,6 @@ package requests;
  * Date: 15.04.2022
  */
 public class LoginCourier {
-
     private String login;
     private String password;
 

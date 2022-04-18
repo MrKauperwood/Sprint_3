@@ -1,7 +1,9 @@
 package reststeps;
 
+import io.qameta.allure.Step;
 import requests.NewOrder;
 import responses.NewOrderResponse;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +25,7 @@ public class CreateNewOrder {
     public static String address = "Мой адрес Советский Союз";
     public static List<String> color = List.of("BLACK");
 
+    @Step("Create new order and get order's id")
     public static Integer createNewOrderAndGetId() {
         ArrayList<String> userData = registerNewCourierAndLogin();
         NewOrder newOrder = new NewOrder(

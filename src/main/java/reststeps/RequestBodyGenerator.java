@@ -1,5 +1,6 @@
 package reststeps;
 
+import io.qameta.allure.Step;
 import requests.NewCourier;
 
 /**
@@ -8,6 +9,7 @@ import requests.NewCourier;
  */
 public class RequestBodyGenerator {
 
+    @Step("Get body for register request")
     public static String getRegisterRequestBody(NewCourier user) {
         return "{\"login\":\"" + user.getLogin() + "\","
                 + "\"password\":\"" + user.getPassword() + "\","
